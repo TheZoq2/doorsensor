@@ -51,14 +51,14 @@ TEST_CASE("Shadowing strings does not cause problems", "[dynamicstring]") {
 TEST_CASE("ATStatus can parse replies", "[atstatus]") {
     AtStatusListener sl;
 
-    std::string message = "WIFI CONNECTED\n\rWIFI GOT IP\n\rOK\n\r";
+    std::string message = "WIFI CONNECTED\r\nWIFI GOT IP\r\nOK\r\n";
 
     for(auto c : message) {
         sl.receive_char(c);
     }
     REQUIRE(sl.current_status() == AtStatus::OK);
 
-    message = "\n\rERROR\n\r";
+    message = "\r\nERROR\r\n";
 
     sl = AtStatusListener();
     for(auto c : message) {
@@ -66,7 +66,7 @@ TEST_CASE("ATStatus can parse replies", "[atstatus]") {
     }
     REQUIRE(sl.current_status() == AtStatus::ERROR);
 
-    message = "busy p...\n\rWIFI DISCONNECT\n\rAT+\n\rbusy p...\n\rAT\n\rbusy p...\n\r+CWJAP:1\n\r \n\rFAIL\n\r";
+    message = "busy p...\r\nWIFI DISCONNECT\r\nAT+\r\nbusy p...\r\nAT\r\nbusy p...\r\n+CWJAP:1\r\n \r\nFAIL\r\n";
 
     sl = AtStatusListener();
     for(auto c : message) {

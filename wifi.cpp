@@ -1,5 +1,7 @@
 #include "wifi.h"
 
+#include <stdio.h>
+
 ////////////////////////////////////////////////////////////////////////////////
 // Standalone functions
 ////////////////////////////////////////////////////////////////////////////////
@@ -46,7 +48,7 @@ void AtStatusListener::update_status() {
     if(reply_size >= 3) {
 
         if(
-                reply.get()[reply_size-3] == '\r' &&
+                reply.get()[reply_size-3] == '\n' &&
                 reply.get()[reply_size-2] == 'O' &&
                 reply.get()[reply_size-1] == 'K'
             ) {
@@ -55,7 +57,7 @@ void AtStatusListener::update_status() {
     }
     if(reply_size >= 5) {
         if(
-                reply.get()[reply_size-5] == '\r' &&
+                reply.get()[reply_size-5] == '\n' &&
                 reply.get()[reply_size-4] == 'F' &&
                 reply.get()[reply_size-3] == 'A' &&
                 reply.get()[reply_size-2] == 'I' &&
@@ -66,7 +68,7 @@ void AtStatusListener::update_status() {
     }
     if(reply_size >= 6) {
         if(
-                reply.get()[reply_size-6] == '\r' &&
+                reply.get()[reply_size-6] == '\n' &&
                 reply.get()[reply_size-5] == 'E' &&
                 reply.get()[reply_size-4] == 'R' &&
                 reply.get()[reply_size-3] == 'R' &&

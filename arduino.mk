@@ -6,7 +6,7 @@ include ./paths.mk
 BOARD_TAG    = teensyLC
 ARDUINO_LIBS = 
 
-LOCAL_CPP_SRCS = 
+LOCAL_CPP_SRCS = wifi.cpp dynamicstring.cpp
 
 CXXFLAGS += -DIS_ARDUINO
 
